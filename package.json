@@ -1,0 +1,28 @@
+{
+    "name": "team-profile-generator",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "directories": {
+      "lib": "lib"
+    },
+    "scripts": {
+      "test": "jest --verbose"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Mhassan0630/Team-Profile-Generator"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/Mhassan0630/Team-Profile-Generator/issues"
+    },
+    "homepage": "https://github.com/Mhassan0630/Team-Profile-Generator#readme",
+    "dependencies": {
+      "inquirer": "^8.2.4",
+      "jest": "^29.4.3"
+    }
+  }
+  
