@@ -1,41 +1,44 @@
-// Importing necessary modules
-const inquirer = require('inquirer');
-const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
-const generatePage = require('./src/page-template');
-const { writeFile, copyFile } = require('./utils/generate-site');
-
-// Array to hold team members
-const teamArray = [];
-
-// Prompt user to input team member data
-const promptUser = () => {
-  return inquirer.prompt([
-    // prompts here
-  ])
-  .then(employeeData => {
-    let { name, id, email, role, github, school, officeNumber } = employeeData;
-    let employee;
-
-    switch (role) {
-      case 'Manager':
-        employee = new Manager(name, id, email, officeNumber);
-        break;
-      case 'Engineer':
-        employee = new Engineer(name, id, email, github);
-        break;
-      case 'Intern':
-        employee = new Intern(name, id, email, school);
-        break;
-    }
-
-    teamArray.push(employee);
-
-    if (employeeData.confirmAddEmployee) {
-      return promptUser();
-    } else {
-      return teamArray;
-    }
-  });
+const intern = new Intern(
+  answers.name,
+  answers.id,
+  answers.email,
+  answers.school
+);
+teamMembers.push(intern);
+addTeamMember();
+});
 };
+
+const addTeamMember = () => {
+return inquirer
+.prompt([
+{
+  type: "list",
+  name: "memberChoice",
+  message: "What type of team member would you like to add?",
+  choices: ["Engineer", "Intern", "I don't want to add any more team members"],
+},
+])
+.then((userChoice) => {
+switch (userChoice.memberChoice) {
+  case "Engineer":
+    addEngineer();
+    break;
+  case "Intern":
+    addIntern();
+    break;
+  default:
+    writeFile(teamMembers);
+    break;
+}
+});
+};
+
+const writeFile = (data) => {
+fs.writeFile("./dist/index.html", render(data), (err) => {
+if (err) throw err;
+console.log("Your team profile has been successfully generated!");
+});
+};
+
+addManager();
