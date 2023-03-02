@@ -4,7 +4,7 @@ const jest = require("jest");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const render = require("./src/page-template");
+// const render = require("./src/page-template");
 
 const teamMembers = [];
 
@@ -116,4 +116,19 @@ const addEngineer = () => {
             console.log("Please enter an email address!");
             return false;
           }
-       
+        }
+      }
+    ])
+  }
+  //creates intern object and adds it to the team array, then calls the function to add a team member
+  function internChoice() {
+    inquirer
+      .prompt(internQuestions)
+      .then(response => {
+        const newIntern = new Intern(response.name, response.id, response.email, response.school);
+        team.push(newIntern);
+        add();
+      })
+  }
+
+  
