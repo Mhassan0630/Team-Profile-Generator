@@ -1,4 +1,3 @@
-const fs = require("fs");
 const inquirer = require("inquirer");
 const jest = require("jest");
 const Manager = require("./lib/Manager");
@@ -131,4 +130,5 @@ const addEngineer = () => {
       })
   }
 
-  
+  process.exit(0); // replace 0 with any other number if you want to indicate an error
+
