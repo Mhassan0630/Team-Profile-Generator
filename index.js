@@ -1,9 +1,9 @@
 const inquirer = require("inquirer");
-const jest = require("jest");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-// const render = require("./src/page-template");
+const generateHTML = require("./src/generateHTML");
+const fs = require("fs");
 
 const teamMembers = [];
 
@@ -116,19 +116,27 @@ const addEngineer = () => {
             return false;
           }
         }
-      }
+      },
+      {
+        type: "input",
+        name: "github",
+        message: "What is your engineer's GitHub username?",
+        validate: (githubInput) => {
+          if (githubInput) {
+            return true;
+          } else {
+            console.log("Please enter a GitHub username!");
+            return false;
+          }
+        },
+      },
     ])
-  }
-  //creates intern object and adds it to the team array, then calls the function to add a team member
-  function internChoice() {
-    inquirer
-      .prompt(internQuestions)
-      .then(response => {
-        const newIntern = new Intern(response.name, response.id, response.email, response.school);
-        team.push(newIntern);
-        add();
-      })
-  }
-
-  process.exit(0); // replace 0 with any other number if you want to indicate an error
-
+    .then((answers) => {
+      const engineer = new Engineer(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.github
+      );
+      team
+      
