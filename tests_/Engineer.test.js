@@ -1,20 +1,21 @@
 const Engineer = require('../lib/Engineer');
-const Employee = require('../lib/Employee');
 
-test('creates an engineer object', () => {
-  const engineer = new Engineer('John', 1, 'test@test.com', 'testusername');
+describe('Testing entire Engineer class', () => {
+    it('Have a github property', () => {
+        const githubTest = 'github/mhassan0630';        
+        const newEngineer = new Engineer('', '', '', githubTest );
+        expect(newEngineer.github).toBe(githubTest);
+    });
 
-  expect(engineer.github).toEqual(expect.any(String));
-});
+    it('getGithub method should be utilized to obtain the GitHub access.', () => {
+        const githubTest = 'github/mhassan0630';        
+        const newEngineer = new Engineer('', '', '', githubTest );
+        expect(newEngineer.getGithub()).toBe(githubTest);
+    });  
 
-test("gets engineer's GitHub username", () => {
-  const engineer = new Engineer('John', 1, 'test@test.com', 'testusername');
+    it('should return Engineer with getRole method', () => {  
+        const newEngineer = new Engineer();
+        expect(newEngineer.getRole()).toBe('Engineer');
+    });
 
-  expect(engineer.getGithub()).toEqual(expect.any(String));
-});
-
-test("gets engineer's role", () => {
-  const engineer = new Engineer('John', 1, 'test@test.com', 'testusername');
-
-  expect(engineer.getRole()).toEqual('Engineer');
-});
+}); 

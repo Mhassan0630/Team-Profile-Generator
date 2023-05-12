@@ -1,15 +1,21 @@
 const Manager = require('../lib/Manager');
-const Employee = require('../lib/Employee');
 
-test('creates a manager object', () => {
-  const manager = new Manager('John', 1, 'test@test.com', 101);
+describe('Test all Manager class', () => {
+    it('Office number property is required', () => {
+        const officeNumberTest = 5;        
+        const newManager = new Manager('', '', '', officeNumberTest );
+        expect(newManager.officeNumber).toBe(officeNumberTest);
+    });
 
-  expect(manager.officeNumber).toEqual(expect.any(Number));
-});
+    it('The getOfficeNumber method should be employed to retrieve the office number.', () => {
+        const officeNumberTest = 5;        
+        const newManager = new Manager('', '', '', officeNumberTest);
+        expect(newManager.getOfficeNumber()).toBe(officeNumberTest);
+    });
 
-test("gets manager's role", () => {
-  const manager = new Manager('John', 1, 'test@test.com', 101);
+    it('The getRole method should yield the designation of Manager', () => {  
+        const newManager = new Manager();
+        expect(newManager.getRole()).toBe('Manager');
+    });
 
-  expect(manager.getRole()).toEqual('Manager');
-});
-
+}); 

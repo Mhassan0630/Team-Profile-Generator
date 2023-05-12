@@ -1,20 +1,21 @@
 const Intern = require('../lib/Intern');
-const Employee = require('../lib/Employee');
 
-test('creates an intern object', () => {
-  const intern = new Intern('John', 1, 'test@test.com', 'test school');
+describe('Testing all Intern class', () => {
+    it('school property is required.', () => {
+        const schoolTest = 'University';        
+        const newIntern = new Intern('', '', '', schoolTest);
+        expect(newIntern.school).toBe(schoolTest);
+    });
 
-  expect(intern.school).toEqual(expect.any(String));
-});
+    it('should give school using getSchool method', () => {
+        const schoolTest = 'University';
+        const newIntern = new Intern('', '', '', schoolTest);             
+        expect(newIntern.getSchool()).toBe(schoolTest);
+    });  
 
-test("gets intern's school", () => {
-  const intern = new Intern('John', 1, 'test@test.com', 'test school');
+    it('should return Intern with getRole method', () => {  
+        const newIntern = new Intern();
+        expect(newIntern.getRole()).toBe('Intern');
+    });
 
-  expect(intern.getSchool()).toEqual(expect.any(String));
-});
-
-test("gets intern's role", () => {
-  const intern = new Intern('John', 1, 'test@test.com', 'test school');
-
-  expect(intern.getRole()).toEqual('Intern');
-});
+}); 
